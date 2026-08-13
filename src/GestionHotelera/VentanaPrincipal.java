@@ -1,9 +1,10 @@
 package GestionHotelera;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;   // hacemos que la ventana "escuche" los eventos
 
-public class VentanaPrincipal extends JFrame { // ventana swing
+public class VentanaPrincipal extends JFrame implements ActionListener { // ventana swing
    //Paneles
     private JPanel panelMenu;
     private JPanel panelContenido;
@@ -23,7 +24,7 @@ public class VentanaPrincipal extends JFrame { // ventana swing
 
         //división de trabajo para evitar un constructor enorme
         crearComponentes();
-        organizarComponenetes(); // donde van a ir ubicados
+        organizarComponentes(); // donde van a ir ubicados
     }
 
     private void crearComponentes(){
@@ -35,9 +36,11 @@ public class VentanaPrincipal extends JFrame { // ventana swing
         botonHuespedes = new JButton("Huéspedes");
         botonReservaciones = new JButton("Reservaciones");
         botonSalida = new JButton("Salir");
+
+        botonDashboard.addActionListener(this); // cuando se presiona avisa
     }
 
-    private void organizarComponenetes(){
+    private void organizarComponentes(){
         setLayout(new BorderLayout());
         panelMenu.setLayout(new GridLayout(5,1)); // cinco filas una columna
         panelMenu.add(botonDashboard);
@@ -52,4 +55,17 @@ public class VentanaPrincipal extends JFrame { // ventana swing
         add(panelMenu, BorderLayout.WEST);
         add(panelContenido,BorderLayout.CENTER);
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == botonDashboard) {
+            panelContenido.removeAll();
+            panelContenido.add(new DashboardPanel(), BorderLayout.CENTER);
+
+            panelContenido.revalidate();
+            panelContenido.repaint();
+        }
+    }
+
 }
