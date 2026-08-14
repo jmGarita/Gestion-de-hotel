@@ -2,7 +2,6 @@ package GestionHotelera;
 
 public class Huespedes {
 
-    private int id;
     private  String nombre;
     private String apellido;
     private String identificacion;
@@ -10,9 +9,8 @@ public class Huespedes {
     private String correo;
     private String nacionalidad;
 
-    public Huespedes(int id, String nombre,String apellido, String identificacion, String telefono, String correo, String nacionalidad){
+    public Huespedes( String nombre,String apellido, String identificacion, String telefono, String correo, String nacionalidad){
 
-        this.id=id;
         this.nombre=nombre;
         this.apellido=apellido;
         this.identificacion=identificacion;
@@ -67,14 +65,6 @@ public class Huespedes {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 }

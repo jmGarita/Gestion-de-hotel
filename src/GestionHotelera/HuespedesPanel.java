@@ -1,5 +1,6 @@
 package GestionHotelera;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class HuespedesPanel extends JPanel{
@@ -26,6 +27,16 @@ public class HuespedesPanel extends JPanel{
     private JButton botonEditar;
     private JButton botonEliminar;
     private JButton botonLimpiar;
+
+    private JTextField camBuscar; // se escribirá lo que el usuario quiere buscar
+    private JTable tablaHuespedes; // Es la tabla que mostrará los huéspedes
+    private DefaultTableModel modeloTabla; // donde se manejan las filas y columnas
+
+
+    // para mantener un orden en el código
+    private JPanel panelFormulario;
+    private JPanel panelBotones;
+    private JPanel panelBusqueda;
 
     public HuespedesPanel(){
 
@@ -59,6 +70,15 @@ public class HuespedesPanel extends JPanel{
         botonEliminar = new JButton("Eliminar");
         botonGuardar = new JButton("Guarda");
         botonLimpiar = new JButton("Limpiar");
+
+        camBuscar = new JTextField();
+
+        modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Apellido");
+        modeloTabla.addColumn("Identificación");
+        modeloTabla.addColumn("Teléfono");
+        tablaHuespedes = new JTable(modeloTabla);  //en todo eso se dice que se tendrán cinco columnas
     }
 
     private void organizarComponentes(){
@@ -77,7 +97,7 @@ public class HuespedesPanel extends JPanel{
         add(etiApellido,gbc);
         gbc.gridx = 1;
         gbc.gridy = 1;
-        add(camNombre,gbc);
+        add(camApellido,gbc);
         gbc.gridx = 0;
         gbc.gridy = 2;
         add(etiIdentificacion,gbc);
@@ -102,6 +122,20 @@ public class HuespedesPanel extends JPanel{
         gbc.gridx = 1;
         gbc.gridy = 5;
         add(comNacionalidad,gbc);
+
+        JPanel panelBotones = new JPanel(); // para los botones
+        panelBotones.add(botonEditar);
+        panelBotones.add(botonEliminar);
+        panelBotones.add(botonNuevo);
+        panelBotones.add(botonGuardar);
+        panelBotones.add(botonLimpiar);
+
+        JPanel panelBusqueda = new JPanel(); // para buscar
+        panelBusqueda.setLayout(new FlowLayout());
+        panelBusqueda.add(new JLabel("Buscar: "));
+        panelBusqueda.add(camBuscar);
+
+        JScrollPane scrollTabla = new JScrollPane(tablaHuespedes); // pq permita que haya un desplazamiento dentro de la tabla cuando tengamos demasiados registros
     }
 
 }

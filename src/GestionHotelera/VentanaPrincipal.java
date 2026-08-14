@@ -38,6 +38,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener { // vent
         botonSalida = new JButton("Salir");
 
         botonDashboard.addActionListener(this); // cuando se presiona avisa
+        botonHuespedes.addActionListener(this);
     }
 
     private void organizarComponentes(){
@@ -66,6 +67,13 @@ public class VentanaPrincipal extends JFrame implements ActionListener { // vent
             panelContenido.revalidate();
             panelContenido.repaint();
         }
+
+        if(e.getSource() == botonHuespedes)
+            panelContenido.removeAll();
+            panelContenido.add(new HuespedesPanel(),BorderLayout.CENTER);
+
+            panelContenido.revalidate();
+            panelContenido.repaint();
     }
 
 
